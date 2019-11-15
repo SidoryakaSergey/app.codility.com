@@ -34,17 +34,16 @@
 // each element of array A is an integer within the range[1. .1, 000, 000, 000];
 // all but one of the values in A occur an even number of times.
 
-const A = [9, 9, 3, 5, 3, 7, 7];
+const A = [9, 9, 3, 5, 3, 7, 7,10,10,11,11,12,12,13,14,13,14,15,15,16,16,18,18,19,20,21,20,21];
 
 function solution(A) {
+    if (A.length == 1) return A[0];
     let N = -1;
     for (let j = 0; j < A.length; j++) {
         if (N > 0) {
             return N;
         }
         for (let i = 0; i < A.length; i++) {
-            console.log("j=", j, "         i=", i);
-
             if ((A[j] == A[i]) && (i != j)) {
                 N = -1;
                 break;
@@ -55,6 +54,28 @@ function solution(A) {
     }
 }
 
+function solution1(A){
+    let N = -1;
+    if (A.length == 1) return A[0];
+    for (let i = 0; i < A.length; i++) {
+        let key = A[i];
+        if (key < 0) continue;
+        if (~A.indexOf(key, i + 1)) {
+            A[i] = N;
+            N--;
+            do {
+                A[A.indexOf(key)] = N;
+                N--;
+            }  while (~A.indexOf(key));
+        }else{
+            return key;
+        }
+    }
+}
+
+
+
+
 // END
 
-console.log(solution(A));
+console.log(solution1(A));
