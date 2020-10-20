@@ -1,2 +1,2 @@
-# app.codility.com
+# https://app.codility.com/programmers/
 Train your coding skills
